@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.*;
@@ -133,7 +134,9 @@ public class MainActivity extends Activity
             webView.setWebChromeClient(new WebChromeClient());
             webView.setWebViewClient(new WebViewClient());
             WebSettings settings = webView.getSettings();
-            WebView.setWebContentsDebuggingEnabled(true);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                WebView.setWebContentsDebuggingEnabled(true);
+            }
             settings.setJavaScriptEnabled(true);
             switch (getArguments().getInt(ARG_SECTION_NUMBER)) {
                 case 1:
